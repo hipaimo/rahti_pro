@@ -1,0 +1,121 @@
+artisan_id,produit,stock_actuel,seuil_alerte,prix_unitaire
+ART_001,Tajine Traditionnel,25,7,450
+ART_001,Théière Fassi,14,8,650
+ART_001,Vase Zellige,5,4,1200
+ART_001,Bol Tadelakt,7,12,280
+ART_002,Tapis Beni Ourain,45,9,3500
+ART_002,Tapis Azilal,45,7,2800
+ART_002,Tapis Boucherouite,31,12,1200
+ART_002,Tapis Zanafi,12,13,4200
+ART_003,Tajine Traditionnel,38,8,450
+ART_003,Théière Fassi,28,13,650
+ART_003,Vase Zellige,29,15,1200
+ART_003,Bol Tadelakt,47,14,280
+ART_004,Tajine Traditionnel,15,15,450
+ART_004,Théière Fassi,31,15,650
+ART_004,Vase Zellige,44,15,1200
+ART_004,Bol Tadelakt,31,13,280
+ART_005,Tapis Beni Ourain,27,8,3500
+ART_005,Tapis Azilal,50,3,2800
+ART_005,Tapis Boucherouite,15,13,1200
+ART_005,Tapis Zanafi,50,13,4200
+ART_006,Tapis Beni Ourain,32,13,3500
+ART_006,Tapis Azilal,45,15,2800
+ART_006,Tapis Boucherouite,17,4,1200
+ART_006,Tapis Zanafi,7,6,4200
+ART_007,Sac Babouche,33,10,1200
+ART_007,Portefeuille Cuir,44,3,450
+ART_007,Ceinture Traditionnelle,20,9,380
+ART_007,Malette Artisanale,32,8,2800
+ART_008,Tapis Beni Ourain,48,5,3500
+ART_008,Tapis Azilal,6,10,2800
+ART_008,Tapis Boucherouite,26,15,1200
+ART_008,Tapis Zanafi,46,13,4200
+ART_009,Boucles Berbères,5,14,850
+ART_009,Collier Amazigh,16,4,1500
+ART_009,Bracelet Khmissa,24,3,420
+ART_009,Bague Filigrane,32,14,680
+ART_010,Tajine Traditionnel,13,9,450
+ART_010,Théière Fassi,36,14,650
+ART_010,Vase Zellige,16,9,1200
+ART_010,Bol Tadelakt,29,10,280
+ART_011,Boucles Berbères,29,7,850
+ART_011,Collier Amazigh,31,7,1500
+ART_011,Bracelet Khmissa,40,4,420
+ART_011,Bague Filigrane,26,11,680
+ART_012,Tajine Traditionnel,39,9,450
+ART_012,Théière Fassi,31,15,650
+ART_012,Vase Zellige,6,12,1200
+ART_012,Bol Tadelakt,38,13,280
+ART_013,Tajine Traditionnel,42,8,450
+ART_013,Théière Fassi,7,9,650
+ART_013,Vase Zellige,50,11,1200
+ART_013,Bol Tadelakt,29,7,280
+ART_014,Table Basse Cedre,31,3,4500
+ART_014,Miroir Moucharabieh,42,11,3200
+ART_014,Etagère Berbère,35,5,1800
+ART_014,Tabouret Bois,9,3,950
+ART_015,Tajine Traditionnel,33,6,450
+ART_015,Théière Fassi,37,8,650
+ART_015,Vase Zellige,50,10,1200
+ART_015,Bol Tadelakt,31,5,280
+ART_016,Tapis Beni Ourain,17,9,3500
+ART_016,Tapis Azilal,6,4,2800
+ART_016,Tapis Boucherouite,13,11,1200
+ART_016,Tapis Zanafi,33,10,4200
+ART_017,Sac Babouche,18,12,1200
+ART_017,Portefeuille Cuir,29,15,450
+ART_017,Ceinture Traditionnelle,41,9,380
+ART_017,Malette Artisanale,49,8,2800
+ART_018,Boucles Berbères,35,15,850
+ART_018,Collier Amazigh,49,4,1500
+ART_018,Bracelet Khmissa,6,11,420
+ART_018,Bague Filigrane,24,4,680
+ART_019,Tajine Traditionnel,22,8,450
+ART_019,Théière Fassi,23,6,650
+ART_019,Vase Zellige,38,7,1200
+ART_019,Bol Tadelakt,7,14,280
+ART_020,Table Basse Cedre,49,7,4500
+ART_020,Miroir Moucharabieh,49,4,3200
+ART_020,Etagère Berbère,45,5,1800
+ART_020,Tabouret Bois,7,3,950
+ART_021,Sac Babouche,6,10,1200
+ART_021,Portefeuille Cuir,21,12,450
+ART_021,Ceinture Traditionnelle,45,15,380
+ART_021,Malette Artisanale,30,15,2800
+ART_022,Tapis Beni Ourain,5,7,3500
+ART_022,Tapis Azilal,22,14,2800
+ART_022,Tapis Boucherouite,28,8,1200
+ART_022,Tapis Zanafi,34,10,4200
+ART_023,Tapis Beni Ourain,48,3,3500
+ART_023,Tapis Azilal,27,7,2800
+ART_023,Tapis Boucherouite,42,4,1200
+ART_023,Tapis Zanafi,25,14,4200
+ART_024,Boucles Berbères,39,4,850
+ART_024,Collier Amazigh,45,8,1500
+ART_024,Bracelet Khmissa,44,10,420
+ART_024,Bague Filigrane,44,10,680
+ART_025,Tapis Beni Ourain,31,4,3500
+ART_025,Tapis Azilal,31,3,2800
+ART_025,Tapis Boucherouite,12,9,1200
+ART_025,Tapis Zanafi,17,7,4200
+ART_026,Tajine Traditionnel,13,9,450
+ART_026,Théière Fassi,15,10,650
+ART_026,Vase Zellige,14,15,1200
+ART_026,Bol Tadelakt,15,8,280
+ART_027,Tapis Beni Ourain,11,13,3500
+ART_027,Tapis Azilal,48,7,2800
+ART_027,Tapis Boucherouite,29,10,1200
+ART_027,Tapis Zanafi,43,4,4200
+ART_028,Table Basse Cedre,13,5,4500
+ART_028,Miroir Moucharabieh,42,8,3200
+ART_028,Etagère Berbère,7,10,1800
+ART_028,Tabouret Bois,46,14,950
+ART_029,Tapis Beni Ourain,25,6,3500
+ART_029,Tapis Azilal,35,10,2800
+ART_029,Tapis Boucherouite,7,10,1200
+ART_029,Tapis Zanafi,11,6,4200
+ART_030,Tajine Traditionnel,35,15,450
+ART_030,Théière Fassi,48,9,650
+ART_030,Vase Zellige,28,7,1200
+ART_030,Bol Tadelakt,38,14,280
