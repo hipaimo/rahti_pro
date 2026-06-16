@@ -3,6 +3,7 @@
 ## Design Patterns Implémentés
 
 ### 1. Strategy Pattern (Comportemental)
+
 **Fichier:** `app/models/predictions/strategy.py`
 
 Permet d'interchanger les algorithmes de prédiction sans modifier le code client.
@@ -19,6 +20,7 @@ class LightGBMStrategy(PredictionStrategy): ...
 ```
 
 **Utilisation:**
+
 ```python
 service = PredictionService(model_type='lightgbm')
 service.predict(X)  # Utilise LightGBM
@@ -28,6 +30,7 @@ service.predict(X)  # Utilise maintenant Random Forest
 ```
 
 ### 2. Factory Method (Création)
+
 **Fichier:** `app/models/predictions/factory.py`
 
 Crée des objets sans spécifier la classe exacte.
@@ -38,6 +41,7 @@ model = ModelFactory.create_model('lightgbm')
 ```
 
 ### 3. Observer Pattern (Comportemental)
+
 **Fichier:** `app/models/stocks/observer.py`
 
 Notifie automatiquement les observateurs quand un stock change.
@@ -57,6 +61,7 @@ alert_system.update_stock('PROD_001', 3, 10)
 ```
 
 ### 4. Singleton (Création)
+
 **Fichier:** `app/main.py` (DataStore)
 
 Une seule instance des données en mémoire.
@@ -86,13 +91,13 @@ backend/
 
 ## Endpoints API
 
-| Endpoint | Pattern | Description |
-|----------|---------|-------------|
-| `POST /api/predict` | Strategy | Prédit avec le modèle actuel |
-| `POST /api/models/switch/{type}` | Strategy | Change de modèle |
-| `GET /api/models/available` | Factory | Liste les modèles |
-| `POST /api/stocks/update/{id}` | Observer | Met à jour et notifie |
-| `GET /api/stocks/alertes` | Observer | Liste les alertes |
+| Endpoint                         | Pattern  | Description                  |
+| -------------------------------- | -------- | ---------------------------- |
+| `POST /api/predict`              | Strategy | Prédit avec le modèle actuel |
+| `POST /api/models/switch/{type}` | Strategy | Change de modèle             |
+| `GET /api/models/available`      | Factory  | Liste les modèles            |
+| `POST /api/stocks/update/{id}`   | Observer | Met à jour et notifie        |
+| `GET /api/stocks/alertes`        | Observer | Liste les alertes            |
 
 ## Lancement
 
@@ -101,3 +106,8 @@ cd backend
 pip install -r requirements.txt
 python -m uvicorn app.main:app --reload --port 8000
 ```
+
+terminal 2:
+
+cd C:\Users\HP\Desktop\vscode\PI\rahti_pro\frontend
+npm start

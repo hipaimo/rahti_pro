@@ -17,12 +17,13 @@ from pathlib import Path
 import uvicorn
 
 # Import des services avec Design Patterns
-from backend.app.services.prediction_service import PredictionService
-from backend.app.models.stocks.observer import StockAlertSubject, DashboardAlertObserver, EmailAlertObserver
-from backend.app.models.predictions.factory import ModelFactory
+# Import des services avec Design Patterns
+from app.services.prediction_service import PredictionService
+from app.models.stocks.observer import StockAlertSubject, DashboardAlertObserver, EmailAlertObserver
+from app.models.predictions.factory import ModelFactory
 
 # ============================================================
-# APPLICATION
+# APPLICATIO
 # ============================================================
 
 app = FastAPI(
