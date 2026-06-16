@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Stocks from './pages/Stocks';
 import Predictions from './pages/Predictions';
 import Alertes from './pages/Alertes';
+import Recommandations from './pages/Recommandations';
 import './App.css';
 
 const API_URL = 'http://localhost:8000/api';
@@ -50,6 +51,9 @@ function App() {
           <NavLink to="/predictions" className={({isActive}) => isActive ? 'active' : ''}>
             🔮 Prédictions
           </NavLink>
+          <NavLink to="/recommandations" className={({isActive}) => isActive ? 'active' : ''}>
+            🛒 Réapprovisionnement
+          </NavLink>
           <NavLink to="/alertes" className={({isActive}) => isActive ? 'active' : ''}>
             🚨 Alertes
           </NavLink>
@@ -61,6 +65,7 @@ function App() {
             <Route path="/" element={<Dashboard apiUrl={API_URL} />} />
             <Route path="/stocks" element={<Stocks apiUrl={API_URL} />} />
             <Route path="/predictions" element={<Predictions apiUrl={API_URL} />} />
+            <Route path="/recommandations" element={<Recommandations apiUrl={API_URL} />} />
             <Route path="/alertes" element={<Alertes apiUrl={API_URL} />} />
           </Routes>
         </main>

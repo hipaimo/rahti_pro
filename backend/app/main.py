@@ -356,3 +356,380 @@ async def get_tendances():
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+
+# ============================================================
+# ÉVÉNEMENTS MAROCAINS - Calendrier Hijri (Innovation)
+# ============================================================
+
+def get_moroccan_events_for_year(gregorian_year: int) -> List[Dict]:
+    """
+    Génère les événements marocains clés basés sur le calendrier Hijri.
+    Ces dates sont approximatives et calculées dynamiquement.
+    """
+    # Conversion approximative: 1 année hijri ≈ 354.37 jours
+    # Référence: 1 Muharram 1446 = 7 juillet 2024
+    REF_GREG = datetime(2024, 7, 7)
+    REF_HIJRI_YEAR = 1446
+    HIJRI_DAY = 354.37
+
+    def hijri_to_gregorian(h_year: int, h_month: int, h_day: int = 1) -> datetime:
+        """Approximation de conversion hijri vers grégorien"""
+        delta_years = h_year - REF_HIJRI_YEAR
+        delta_months = h_month - 1  # Muharram = mois 1
+        total_days = delta_years * HIJRI_DAY + delta_months * (HIJRI_DAY / 12) + h_day - 1
+        return REF_GREG + timedelta(days=total_days)
+
+    # Calcul de l'année hijri pour l'année grégorienne demandée
+    delta_days = (datetime(gregorian_year, 6, 15) - REF_GREG).days
+    approx_hijri_year = REF_HIJRI_YEAR + int(delta_days / HIJRI_DAY)
+
+    events = []
+
+    # Ramadan (mois 9)
+    ramadan_start = hijri_to_gregorian(approx_hijri_year, 9, 1)
+    events.append({
+        "nom": "Ramadan",
+        "emoji": "🌙",
+        "date_debut": ramadan_start.strftime("%Y-%m-%d"),
+        "date_fin": (ramadan_start + timedelta(days=29)).strftime("%Y-%m-%d"),
+        "duree_jours": 30,
+        "impact": "très fort",
+        "impact_pct": 35,
+        "categories_impactees": ["tapis", "poterie", "bijouterie"],
+        "description": "Forte hausse de la demande artisanale. Stocker 35% de plus.",
+        "couleur": "#E31E24",
+        "jours_restants": (ramadan_start - datetime.now()).days
+    })
+
+    # Aïd Al-Fitr (1 Shawwal = fin Ramadan)
+    aid_fitr = ramadan_start + timedelta(days=30)
+    events.append({
+        "nom": "Aïd Al-Fitr",
+        "emoji": "🎊",
+        "date_debut": aid_fitr.strftime("%Y-%m-%d"),
+        "date_fin": (aid_fitr + timedelta(days=2)).strftime("%Y-%m-%d"),
+        "duree_jours": 3,
+        "impact": "fort",
+        "impact_pct": 45,
+        "categories_impactees": ["bijouterie", "maroquinerie", "vêtements"],
+        "description": "Pic de ventes bijoux et cadeaux. Pic maximal de l'année.",
+        "couleur": "#FF6B35",
+        "jours_restants": (aid_fitr - datetime.now()).days
+    })
+
+    # Aïd Al-Adha (10 Dhul Hijja)
+    aid_adha = hijri_to_gregorian(approx_hijri_year, 12, 10)
+    events.append({
+        "nom": "Aïd Al-Adha",
+        "emoji": "🐑",
+        "date_debut": aid_adha.strftime("%Y-%m-%d"),
+        "date_fin": (aid_adha + timedelta(days=3)).strftime("%Y-%m-%d"),
+        "duree_jours": 4,
+        "impact": "fort",
+        "impact_pct": 30,
+        "categories_impactees": ["poterie", "tapis", "décoration"],
+        "description": "Demande en poterie et décoration maison. Anticiper 3 semaines avant.",
+        "couleur": "#28A745",
+        "jours_restants": (aid_adha - datetime.now()).days
+    })
+
+    # Mawlid An-Nabawi (12 Rabi al-Awwal)
+    mawlid = hijri_to_gregorian(approx_hijri_year, 3, 12)
+    events.append({
+        "nom": "Mawlid An-Nabawi",
+        "emoji": "⭐",
+        "date_debut": mawlid.strftime("%Y-%m-%d"),
+        "date_fin": (mawlid + timedelta(days=1)).strftime("%Y-%m-%d"),
+        "duree_jours": 1,
+        "impact": "modéré",
+        "impact_pct": 20,
+        "categories_impactees": ["bijouterie", "poterie"],
+        "description": "Hausse modérée des ventes artisanales traditionnelles.",
+        "couleur": "#17A2B8",
+        "jours_restants": (mawlid - datetime.now()).days
+    })
+
+    # Saison Touristique (juin-août) - événement grégorien
+    saison_touristique = datetime(gregorian_year, 6, 1)
+    events.append({
+        "nom": "Haute Saison Touristique",
+        "emoji": "🌞",
+        "date_debut": f"{gregorian_year}-06-01",
+        "date_fin": f"{gregorian_year}-08-31",
+        "duree_jours": 92,
+        "impact": "très fort",
+        "impact_pct": 50,
+        "categories_impactees": ["tapis", "maroquinerie", "bijouterie", "poterie"],
+        "description": "Pic touristique. Tous produits artisanaux en forte demande.",
+        "couleur": "#FFC107",
+        "jours_restants": (saison_touristique - datetime.now()).days
+    })
+
+    # Moussem de Tan-Tan (mai/juin - variable)
+    moussem = datetime(gregorian_year, 5, 15)
+    events.append({
+        "nom": "Moussem de Tan-Tan",
+        "emoji": "🎭",
+        "date_debut": f"{gregorian_year}-05-15",
+        "date_fin": f"{gregorian_year}-05-20",
+        "duree_jours": 5,
+        "impact": "modéré",
+        "impact_pct": 25,
+        "categories_impactees": ["tapis", "bijouterie"],
+        "description": "Festival de l'artisanat du Sahara. Demande spécifique en tapis.",
+        "couleur": "#6F42C1",
+        "jours_restants": (moussem - datetime.now()).days
+    })
+
+    # Trier par date de début
+    events.sort(key=lambda x: x["date_debut"])
+    return events
+
+
+@app.get("/api/evenements/marocains")
+async def get_evenements_marocains(annee: int = None):
+    """
+    Retourne les événements marocains clés (hijri + grégoriens) avec leur impact sur les ventes.
+    Innovation: Intégration du calendrier hijri pour l'artisanat marocain.
+    """
+    if annee is None:
+        annee = datetime.now().year
+
+    events = get_moroccan_events_for_year(annee)
+
+    # Statistiques de base depuis les données
+    stats = {}
+    if store.features is not None:
+        try:
+            ramadan_sales = store.features[store.features["is_ramadan"] == 1]["quantite"].mean()
+            normal_sales = store.features[store.features["is_ramadan"] == 0]["quantite"].mean()
+            stats["ramadan_vs_normal"] = round((ramadan_sales / normal_sales - 1) * 100, 1) if normal_sales > 0 else 0
+        except Exception:
+            stats["ramadan_vs_normal"] = 0
+
+    return {
+        "annee": annee,
+        "evenements": events,
+        "nb_evenements": len(events),
+        "stats_historiques": stats,
+        "message": "Planifiez votre stock 3-4 semaines avant chaque événement"
+    }
+
+
+@app.get("/api/evenements/prochain")
+async def get_prochain_evenement():
+    """Retourne le prochain événement important"""
+    events = get_moroccan_events_for_year(datetime.now().year)
+    next_year_events = get_moroccan_events_for_year(datetime.now().year + 1)
+
+    all_events = events + next_year_events
+    upcoming = [e for e in all_events if e["jours_restants"] >= 0]
+
+    if not upcoming:
+        return {"message": "Aucun événement imminent"}
+
+    prochain = min(upcoming, key=lambda x: x["jours_restants"])
+    return {
+        "evenement": prochain,
+        "alerte": prochain["jours_restants"] <= 30,
+        "conseil": f"⚠️ Dans {prochain['jours_restants']} jours! Augmentez votre stock de {prochain['impact_pct']}%."
+            if prochain["jours_restants"] <= 30 else
+            f"📅 Dans {prochain['jours_restants']} jours."
+    }
+
+# ============================================================
+# RECOMMANDATIONS DE RÉAPPROVISIONNEMENT INTELLIGENTES
+# ============================================================
+
+@app.get("/api/recommandations")
+async def get_recommandations():
+    """
+    Génère des recommandations intelligentes de réapprovisionnement.
+    Combine: stock actuel + ventes moyennes + événements à venir + saison.
+    """
+    if store.stocks is None or store.ventes is None:
+        raise HTTPException(status_code=503, detail="Données non chargées")
+
+    # Ventes moyennes par produit (globale et saison touristique)
+    ventes_moy = store.ventes.groupby("produit")["quantite"].mean()
+    store.ventes["mois_v"] = store.ventes["date"].dt.month
+    ventes_saison = store.ventes[store.ventes["mois_v"].isin([6,7,8])].groupby("produit")["quantite"].mean()
+
+    # Impacts événements réels (depuis le dataset)
+    IMPACTS_REELS = {
+        "ramadan":   1.39,
+        "aid_fitr":  2.04,
+        "aid_adha":  0.62,
+        "moussem":   0.24,
+        "touristique": 0.50,
+    }
+
+    # Événement actuel ou prochain (mois 6-8 = saison touristique)
+    mois_actuel = datetime.now().month
+    evenement_actif = None
+    multiplicateur = 1.0
+    if mois_actuel in [6, 7, 8]:
+        evenement_actif = "Haute Saison Touristique"
+        multiplicateur = 1 + IMPACTS_REELS["touristique"]
+
+    recommandations = []
+
+    # Regrouper stocks par produit (moyenne sur tous les artisans)
+    stocks_par_produit = store.stocks.groupby("produit").agg({
+        "stock_actuel": "sum",
+        "seuil_alerte": "sum",
+        "prix_unitaire": "mean"
+    }).reset_index()
+
+    for _, row in stocks_par_produit.iterrows():
+        produit = row["produit"]
+        stock_total = row["stock_actuel"]
+        seuil_total = row["seuil_alerte"]
+        prix = row["prix_unitaire"]
+
+        # Vente journalière moyenne (avec boost saison si applicable)
+        vente_base = ventes_moy.get(produit, 3.0)
+        if evenement_actif and produit in (ventes_saison.index):
+            vente_effective = ventes_saison.get(produit, vente_base) * multiplicateur
+        else:
+            vente_effective = vente_base * multiplicateur
+
+        # Jours de stock restants
+        jours_stock = round(stock_total / max(vente_effective, 0.1))
+
+        # Quantité recommandée = couvrir 30 jours + buffer événement
+        jours_cible = 30
+        if evenement_actif:
+            jours_cible = 45  # plus de buffer pendant événements
+        quantite_cible = round(vente_effective * jours_cible)
+        quantite_commander = max(0, quantite_cible - stock_total)
+
+        # Urgence
+        if jours_stock <= 3:
+            urgence = "critique"
+            priorite = 1
+        elif jours_stock <= 7:
+            urgence = "haute"
+            priorite = 2
+        elif jours_stock <= 14:
+            urgence = "moyenne"
+            priorite = 3
+        else:
+            urgence = "faible"
+            priorite = 4
+
+        # Valeur financière de la commande
+        valeur_commande = round(quantite_commander * prix)
+
+        # Catégorie du produit
+        cat_row = store.ventes[store.ventes["produit"] == produit]["categorie"]
+        categorie = cat_row.iloc[0] if len(cat_row) > 0 else "inconnu"
+
+        recommandations.append({
+            "produit": produit,
+            "categorie": categorie,
+            "stock_actuel": int(stock_total),
+            "seuil_alerte": int(seuil_total),
+            "vente_journaliere": round(vente_effective, 1),
+            "jours_stock_restants": int(jours_stock),
+            "quantite_a_commander": int(quantite_commander),
+            "valeur_commande_dh": int(valeur_commande),
+            "urgence": urgence,
+            "priorite": priorite,
+            "evenement_impact": evenement_actif,
+            "multiplicateur": round(multiplicateur, 2),
+            "raison": (
+                f"Stock critique ! Rupture dans {jours_stock}j" if urgence == "critique"
+                else f"Stock bas, rupture dans {jours_stock}j" if urgence == "haute"
+                else f"Anticiper saison touristique (+50%)" if evenement_actif and urgence == "moyenne"
+                else f"Réapprovisionnement standard ({jours_stock}j restants)"
+            )
+        })
+
+    # Trier par priorité
+    recommandations.sort(key=lambda x: (x["priorite"], -x["valeur_commande_dh"]))
+
+    # Stats globales
+    total_commander = sum(r["quantite_a_commander"] for r in recommandations)
+    valeur_totale = sum(r["valeur_commande_dh"] for r in recommandations)
+    critiques = [r for r in recommandations if r["urgence"] == "critique"]
+
+    return {
+        "evenement_actif": evenement_actif,
+        "multiplicateur_actif": multiplicateur,
+        "recommandations": recommandations,
+        "resume": {
+            "total_produits": len(recommandations),
+            "produits_critiques": len(critiques),
+            "produits_a_commander": len([r for r in recommandations if r["quantite_a_commander"] > 0]),
+            "quantite_totale": total_commander,
+            "valeur_totale_dh": valeur_totale
+        }
+    }
+
+# ============================================================
+# DASHBOARD ENRICHI - Nouveaux endpoints
+# ============================================================
+
+@app.get("/api/dashboard/stats-reelles")
+async def get_stats_reelles():
+    """Stats réelles complètes pour le dashboard enrichi"""
+    if store.ventes is None:
+        raise HTTPException(status_code=503, detail="Données non chargées")
+
+    v = store.ventes.copy()
+    v["mois"] = v["date"].dt.to_period("M")
+    v["dow"]  = v["date"].dt.day_name()
+
+    # CA par catégorie
+    ca_cat = v.groupby("categorie")["total"].sum().sort_values(ascending=False)
+
+    # Top 5 produits
+    top_produits = v.groupby("produit")["total"].sum().sort_values(ascending=False).head(5)
+
+    # CA par ville
+    ca_ville = v.groupby("ville")["total"].sum().sort_values(ascending=False)
+
+    # Croissance mensuelle (6 derniers mois)
+    monthly = v.groupby("mois")["total"].sum()
+    monthly_dict = {str(k): int(val) for k, val in monthly.tail(12).items()}
+    monthly_list = list(monthly.tail(12).values)
+    growth = round((monthly_list[-1] / monthly_list[-2] - 1) * 100, 1) if len(monthly_list) >= 2 else 0
+
+    # Meilleur jour de la semaine
+    best_day = v.groupby("dow")["total"].mean().idxmax()
+
+    # Stats générales
+    ca_total = int(v["total"].sum())
+    nb_transactions = len(v)
+    nb_artisans = v["artisan_id"].nunique()
+    quantite_totale = int(v["quantite"].sum())
+
+    # CA du mois actuel vs mois précédent
+    mois_actuel = monthly.iloc[-1] if len(monthly) > 0 else 0
+    mois_precedent = monthly.iloc[-2] if len(monthly) > 1 else 1
+    croissance_mois = round((mois_actuel / mois_precedent - 1) * 100, 1)
+
+    # Tapis = roi des produits
+    tapis_pct = round(ca_cat.get("tapis", 0) / ca_total * 100, 1)
+
+    return {
+        "ca_total": ca_total,
+        "nb_transactions": nb_transactions,
+        "nb_artisans": nb_artisans,
+        "nb_produits": v["produit"].nunique(),
+        "quantite_totale": quantite_totale,
+        "ca_mois_actuel": int(mois_actuel),
+        "croissance_mois": croissance_mois,
+        "meilleur_jour": best_day,
+        "tapis_part_ca": tapis_pct,
+        "ca_par_categorie": {k: int(val) for k, val in ca_cat.items()},
+        "ca_par_ville": {k: int(val) for k, val in ca_ville.items()},
+        "top_produits": {k: int(val) for k, val in top_produits.items()},
+        "ca_mensuel": monthly_dict,
+        "croissance_globale": growth,
+        "periode": {
+            "debut": str(v["date"].min().date()),
+            "fin": str(v["date"].max().date())
+        }
+    }
