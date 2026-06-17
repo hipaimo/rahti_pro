@@ -110,4 +110,12 @@ python -m uvicorn app.main:app --reload --port 8000
 terminal 2:
 
 cd C:\Users\HP\Desktop\vscode\PI\rahti_pro\frontend
+
+```bash
 npm start
+```
+## To run with docker 
+
+```bash
+docker compose up --build
+```
