@@ -8,7 +8,7 @@ import Recommandations from './pages/Recommandations';
 import Simulation from './pages/Simulation';
 import './App.css';
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 function App() {
   const [health, setHealth] = useState(null);

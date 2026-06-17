@@ -110,8 +110,15 @@ class DataStore:
     def load(self):
         """Charge toutes les données au démarrage"""
         import os
-        BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-        data_dir = BASE_DIR / "data"
+        # Permet de surcharger l'emplacement des données via la variable
+        # d'environnement DATA_DIR (utile en conteneur Docker), sinon on
+        # retombe sur le chemin relatif basé sur l'emplacement du fichier.
+        env_data_dir = os.environ.get("DATA_DIR")
+        if env_data_dir:
+            data_dir = Path(env_data_dir)
+        else:
+            BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+            data_dir = BASE_DIR / "data"
 
         # Données brutes
         self.ventes = pd.read_csv(data_dir / "raw" / "ventes.csv", parse_dates=["date"])
